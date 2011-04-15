@@ -1,0 +1,9 @@
+Example usage:
+
+<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="hint.expbuilder.js"></script>
+<style type="text/css">
+$(function(){
+    $.hint();
+})
+</style>
