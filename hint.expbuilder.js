@@ -8,19 +8,21 @@
 //***************************************************\\\\
 ///////////////////////////////////////////////////////\\
 ///////////////////////////////////////////////////////\\
-jQuery.hint = function(options)
-{
-   var Config = {
+
+(function( $ ){
+
+$.fn.hint = function(options){
+    var Config = {
                    backgroundcolor: "#000000",
                    color          : '#f1f1f1',
                    border         : '#e1e1e1',
                    size           : 11,
                    curved         : 10,
-                   dir            : 'left',
-                   width          : 20,
+                   width          : 400,
                    font           : 'tahoma',
                    opacity        : 80,
-                   img            : 'hint.png'
+                   img            : 'hint.png',
+                   attr           : 'title'
                 };
     if(options)
     {
@@ -33,10 +35,10 @@ jQuery.hint = function(options)
     }
 
     var counts = 0;
-    $("[title]").each(function() // TODO: add selector
+    this.each(function()
     {
         counts++;
-        var hints = $(this).attr('title');
+        var hints = $(this).attr(Config.attr);
         var optcy = Config.opacity / 100;
         $("body").append('<div id="hints_expbuilder_hiddendata_' + counts + '" style="filter:alpha(opacity=' + Config.opacity + ');opacity: ' + optcy + ';-moz-opacity: ' + optcy + ';font-size: ' + Config.size + 'px;font-family: ' + Config.font + ';-moz-border-radius: ' + Config.curved + 'px;-webkit-border-radius: ' + Config.curved + 'px;-khtml-border-radius: ' + Config.curved + 'px;border-radius: ' + Config.curved + 'px;padding: 0 ' + Config.curved + 'px 0 ' + Config.curved + 'px;border: 3px solid ' + Config.border + ';background-color: ' + Config.backgroundcolor + ';color: ' + Config.color + ';z-index: 550;position: absolute;display: none;width: ' + Config.width + 'px;"><table><tr><td><img src="' + Config.img + '" alt="" /></td><td>' + hints + '</td></tr></table></div>');
         $(this).attr('ids', counts).attr('title', '').bind('mousemove', function(e)
@@ -59,3 +61,5 @@ jQuery.hint = function(options)
         });
     });
 }
+
+})( jQuery );
